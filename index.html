@@ -1,0 +1,29 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>90 Ball Bingo Generator</title>
+</head>
+<body>
+
+<div>
+  <p id="number">42</p>
+  <button id="randomise" >Random </button>
+</div>
+
+</body>
+
+<script>
+
+const el = document.getElementById("randomise");
+el.addEventListener("click", randomiseNumber);
+const numElement = document.getElementById("number");
+
+function randomiseNumber(){
+  const num = Math.floor(Math.random() * 90);
+
+  numElement.textContent = num;
+}
+
+</script>
+
+</html> 
