@@ -6,6 +6,7 @@
 <body>
 
 <div>
+  <p id="nickname"></p>
   <p id="number">42</p>
   <button id="randomise" >Random </button>
 </div>
@@ -14,15 +15,129 @@
 
 <script>
 
-const el = document.getElementById("randomise");
-el.addEventListener("click", randomiseNumber);
+const randomButton = document.getElementById("randomise");
+randomButton.addEventListener("click", randomiseNumber);
+
 const numElement = document.getElementById("number");
+const nicknameElement = document.getElementById("nickname");
 
 function randomiseNumber(){
-  const num = Math.floor(Math.random() * 90);
+  const num = Math.floor(Math.random() * 89) + 1;
+  const nickname = getNickname(num);
 
+  if(nickname) {
+    nicknameElement.textContent = nickname;
+    nicknameElement.style.display = "block";
+  } else {
+    nicknameElement.style.display = "none";
+  }
+  
   numElement.textContent = num;
 }
+
+function getNickname(num) {
+  const item = bingo_nicknames[num-1];
+  if (Array.isArray(item)) {
+    //TODO: Return string of some sort for all of these
+    return item[0];
+  }
+
+  return item;
+}
+
+//Literal translation of https://en.wikipedia.org/wiki/List_of_British_bingo_nicknames
+const bingo_nicknames = [
+  ["Kelly's eye", "Little Jimmy", "Kelly's wonk", "Buttered scone"], //1
+  ["One little duck", "me an' you", "Dr Who"], //2
+  ["Cup of tea", "you an' me", "up a tree"], //3
+  ["Knock at the door", "door to door"], //4
+  ["Man alive", "Jack alive", "dead alive"], //5
+  ["Half a dozen", "Tom mix", "choppin' sticks", "chopsticks"], //6
+  ["Lucky", "Gawd's in 'eaven"], //7
+  ["Garden fate", "One fat lady", "'Arry Tate"], //8
+  "Doctor's orders", //9
+  ["[Prime Minister]'s den", "cock(s) an' 'en", "Dahnin' Street"], //10
+  "Legs eleven", //11
+  "One dozen", //12
+  "Unlucky for some", //13
+  "Valentine's Day", //14
+  "Young and keen", //15
+  ["Never been kissed", "Sweet 16"], //16
+  "Dancin' Queen", //17
+  "Coming of age", //18
+  "Goodbye teens", //19
+  ["Score", "Getting plenty"], //20
+  ["Key of the door", "Royal salute"],  //21
+  ["Ducks on the pond", "Two little ducks"], //22
+  ["The Lord is My Shepard", "Three and me"], //23
+  "Two dozen", //24
+  "Duck and dive", //25
+  ["Half a crown", "Pick and Mix"], //26
+  ["Duck and Crutch", "Gateway to heaven"], //27
+  ["In a state", "Overweight"], //28
+  "Rise and Shine", //29
+  "Dirty Gertie", //30
+  "Get up and run", //31
+  "Buckle my shoe", //32
+  "Dirty knee", //33
+  "Ask for more", //34
+  "Jump and jive", //35
+  "Three dozen", //36
+  "More than eleven", //37
+  "Christmas cake", //38
+  "All the steps", //39
+  ["Life begins", "Naughty 40"], //40
+  "Time for fun", //41
+  "Winnie the Pooh", //42
+  "Down on your knees", //43
+  ["Droopy drawers", "All the fours", "Diana Dors"], //44
+  "Halfway there", //45
+  "Up to tricks", //46
+  "Four and seven", //47
+  "Four dozen", //48
+  "PC", //49
+  ["It's a bullseye!", "5-0, 5-0, it's off to work we go", "Half a century"], //50
+  "Tweak of the thumb", //51
+  ["Danny La Rue", "Chicken vindaloo", "Deck of cards", "Weeks in a year"], //52
+  ["Here comes Herbie!", "Stuck in a tree"], //53
+  ["Man at the door", "Clean the floor"], //54
+  ["All the fives", "Snakes alive"], //55
+  ["Shotts bus", "Was she worth it?"], //56
+  "Heinz varieties", //57
+  "Make them wait", //58
+  "Brighton line", //59
+  ["Grandma's getting frisky", "Five dozen"], //60
+  "Baker's bun", //61
+  ["Tickety-boo", "Turn the screw"], //62
+  "Tickle me", //63
+  ["Almost retired", "Red raw"], //64
+  ["Retirment age", "Stop work", "Old age pension"], //65
+  "Clickety click", //66
+  ["Stairway to heaven", "Made in heaven"], //67
+  ["Pick a mate", "Saving grace"], //68
+  ["Anyway up", "Either way up", "Meal for two", "A favourite of mine"], //69
+  "Three score and 10", //70
+  ["Bang on the drum", "J.Lo's bum"], //71
+  ["Danny La Rue", "Six dozen"], //72
+  ["Queen bee", "Under the tree", "Lucky 3"], //73
+  ["Hit the floor", "Candy store"], //74
+  "Strive and strive", //75
+  "Trombones", //76
+  ["Tow little crutches", "Sunset Strip"], //77
+  ["39 more steps", "Heavens gate"], //78
+  "One more time", //79
+  ["Gandhi's breakfast", "Eight and blank"], //80
+  ["Fat lady with a walking stick", "Stop and run"], //81
+  "Straight on through", //82
+  "Time for tea", //83
+  "Give me more", //84
+  "Staying alive", //85
+  "Between the sticks", //86
+  "Torquay in Devon", //87
+  "Two fat ladies", //88
+  ["Nearly there", "Almost there"], //89
+  "Top of the shop" //90
+]
 
 </script>
 
