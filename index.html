@@ -7,23 +7,67 @@
 
 <div>
   <p id="nickname"></p>
-  <p id="number">42</p>
-  <button id="randomise" >Random </button>
+  <p id="number"> Start </p>
+  <button id="randomise"> Random </button>
+  <button id="start"> Start </button>
+  <button id="pause"> Pause </button>
+  <button id="reset"> Reset </button>
 </div>
 
 </body>
 
 <script>
 
+let knownNumbers = [];
+let timer;
+
 const randomButton = document.getElementById("randomise");
 randomButton.addEventListener("click", randomiseNumber);
+
+const startButton = document.getElementById("start");
+startButton.addEventListener("click", start);
+
+const pauseButton = document.getElementById("pause");
+pauseButton.addEventListener("click", pause);
+
+const resetButton = document.getElementById("reset");
+resetButton.addEventListener("click", reset);
 
 const numElement = document.getElementById("number");
 const nicknameElement = document.getElementById("nickname");
 
+function start(){
+  randomiseAndSetNextTick();
+  startButton.style.display = "none";
+  randomButton.style.display = "none";
+}
+
+function pause(){
+  clearTimeout(timer);
+  startButton.style.display = "";
+  pauseButton.style.display = "none";
+}
+
+function reset(){
+  clearTimeout(timer);
+  knownNumbers = [];
+  numElement.textContent="Start";
+  nicknameElement.textContent = "";
+}
+
+function randomiseAndSetNextTick(){
+  randomiseNumber();
+  timer = setTimeout(randomiseAndSetNextTick, 5000)
+}
+
 function randomiseNumber(){
-  const num = Math.floor(Math.random() * 89) + 1;
+  let num = Math.floor(Math.random() * 89) + 1;
+  console.log(knownNumbers);
+  while (knownNumbers.includes(num)){
+   num = Math.floor(Math.random() * 89) + 1;   
+  }
   const nickname = getNickname(num);
+  knownNumbers.push(num);
 
   if(nickname) {
     nicknameElement.textContent = nickname;
