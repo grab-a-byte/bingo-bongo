@@ -39,6 +39,7 @@ const nicknameElement = document.getElementById("nickname");
 function start(){
   randomiseAndSetNextTick();
   startButton.style.display = "none";
+  pauseButton.style.display = "";
   randomButton.style.display = "none";
 }
 
@@ -53,6 +54,10 @@ function reset(){
   knownNumbers = [];
   numElement.textContent="Start";
   nicknameElement.textContent = "";
+
+  startButton.style.display = "";
+  pauseButton.style.display = "none";
+  randomButton.style.display = "";
 }
 
 function randomiseAndSetNextTick(){
